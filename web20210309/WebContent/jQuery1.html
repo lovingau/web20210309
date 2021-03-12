@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery1</title>
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<button>start</button>
+<div id="msg">message</div>
+<script>
+function start(){
+	$("button").click(execute);
+}
+function execute(){
+	$.get("EmployeeServlet",show);
+}
+function show(rs){
+	$("#msg").html(rs);
+}
+$(document).ready(start);
+</script>
+</body>
+</html>

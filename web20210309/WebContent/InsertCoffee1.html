@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert Coffee1</title>
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	
+咖啡名稱:<input type="text" id="coffee" value="Extra Espresso 4" /><br />
+售價:<input type="text" id="sale" value="200" /><br />
+總量:<input	type="text" id="total" value="10" /><br /> 
+供應商:<input type="text"	id="supplier" value="150" /><br /> 
+價格:<input type="text"	id="price" value="300" /><br /> 
+	<input type="button" id="send" value="Insert"/>
+	<input type="button" id="update" value="Update"/>
+	<div id="msg">Result</div>
+<script>
+	function start(){
+		$("#send").click(myinsert);
+		$("#update").click(myupdate);
+	}
+
+    function myupdate(){
+	var cf=$("#coffee").val();
+	var sa=$("#sale").val();
+	var tt=$("#total").val();
+	$.post("UpdateCoffeeServlet",{"coffee":cf,"sale":sa,"total":tt},show);
+}
+	function myinsert(){
+		var cf=$("#coffee").val();
+		var sa=$("#sale").val();
+		var tt=$("#total").val();
+		var sp=$("#supplier").val();
+		var pr=$("#price").val();
+		$.post("InsertCoffeeServlet",{"coffee":cf,"sale":sa,"total":tt,"supplier":sp,"price":pr},show);
+	}
+	function show(rs){
+		$("#msg").html(rs);
+	}
+	$(document).ready(start);
+</script>
+</body>
+</html>
